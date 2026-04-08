@@ -1,0 +1,43 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import SideBar from "../components/SideBar.astro";
+import { ViewTransitions } from "astro:transitions";
+
+import { SITE_TITLE, SITE_DESCRIPTION, TRANSITION_API, HEADER_BRAND } from "../config";
+
+const {
+  image,
+  title = SITE_TITLE,
+  description = SITE_DESCRIPTION,
+  includeSidebar = true,
+  sideBarActiveItemID,
+  ogType,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" data-theme="night">
+  <head>
+    <BaseHead title={title} description={description} image={image} , ogType={ogType} />
+    {TRANSITION_API && <ViewTransitions />}
+  </head>
+  <body class="min-h-screen overflow-x-hidden bg-base-100 antialiased">
+    <div class="bg-base-100 drawer lg:drawer-open">
+      <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+      <div class="drawer-content min-w-0 bg-base-100">
+        <Header title={HEADER_BRAND} />
+        <div class="flex w-full min-w-0 justify-center">
+          <main
+            class="box-border w-full min-w-0 max-w-full px-4 pb-10 pt-8 sm:px-5 sm:pt-10 md:px-6 lg:max-w-[960px] lg:px-8"
+          >
+            <slot />
+          </main>
+        </div>
+        <Footer />
+      </div>
+      {includeSidebar && <SideBar sideBarActiveItemID={sideBarActiveItemID} />}
+    </div>
+  </body>
+</html>

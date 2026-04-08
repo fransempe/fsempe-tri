@@ -1,0 +1,12 @@
+html {
+    scroll-behavior: smooth;
+}
+
+/* Carrusel / scroll horizontal en iOS */
+.touch-pan-x-momentum {
+    -webkit-overflow-scrolling: touch;
+}
+
+.time-line-container>div:last-child .education__time>.education__line {
+    display: none;
+}
