@@ -1,7 +1,7 @@
 // Place any global data in this file.
 // You can import this data from anywhere in your site by using the `import` keyword.
 
-export const HEADER_BRAND = 'Francisco Sempé';
+export const HEADER_BRAND = '';
 export const SITE_TITLE = 'Francisco Sempé | Triatleta Amateur';
 export const SITE_DESCRIPTION =
   'Triatleta amateur de Mar del Plata, categoría 40–44. Clasificado al IRONMAN 70.3 World Championship Niza 2026.';

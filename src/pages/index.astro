@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ImageCarousel from "../components/ImageCarousel.astro";
+import ResultsTimeline from "../components/ResultsTimeline.astro";
+import { RESULTS_TIMELINE } from "../data/results-timeline";
 import {
   SITE_TITLE,
   SITE_DESCRIPTION,
@@ -32,19 +34,6 @@ import {
       <p class="mb-1 text-[0.65rem] font-bold uppercase tracking-widest text-warning sm:text-xs">🌍 Clasificado al Mundial</p>
       <p class="text-base font-bold sm:text-lg">IRONMAN 70.3 World Championship</p>
       <p class="mt-1 text-sm opacity-80 sm:text-base">📍 Niza, Francia — 2026</p>
-    </div>
-  </section>
-
-  <!-- Galería: carrusel a ancho completo en móvil (compensa padding del main) -->
-  <section id="galeria" class="scroll-mt-24 mb-12 sm:mb-14">
-    <h2 class="mb-3 flex flex-wrap items-center gap-2 text-xl font-bold sm:mb-4 sm:text-2xl md:text-3xl">
-      <span aria-hidden="true">📷</span> Galería
-    </h2>
-    <p class="mb-4 max-w-2xl text-sm text-base-content/80 sm:mb-6 sm:text-base">
-      Entrenamiento, competencias y el camino al Mundial.
-    </p>
-    <div class="-mx-4 min-w-0 sm:mx-0">
-      <ImageCarousel images={CAROUSEL_IMAGES} carouselId="cv" />
     </div>
   </section>
 
@@ -113,155 +102,12 @@ import {
     </ul>
   </section>
 
-  <!-- Resultados -->
+  <!-- Resultados (timeline) -->
   <section id="resultados" class="scroll-mt-24 mb-12 sm:mb-14">
     <h2 class="mb-6 flex flex-wrap items-center gap-2 text-xl font-bold sm:mb-8 sm:text-2xl md:text-3xl">
       <span aria-hidden="true">📊</span> Resultados deportivos
     </h2>
-
-    <div class="space-y-12">
-      <!-- 2026 -->
-      <div>
-        <h3 class="mb-3 flex items-center gap-2 text-lg font-bold text-primary sm:mb-4 sm:text-xl">
-          <span aria-hidden="true">🔥</span> 2026
-        </h3>
-        <div class="grid md:grid-cols-2 gap-4">
-          <article class="card bg-base-200 border border-base-300/50 shadow-lg">
-            <div class="card-body p-4 sm:p-5">
-              <h4 class="card-title text-lg">🌍 Ironman 70.3 San Juan</h4>
-              <ul class="text-sm space-y-1 opacity-90">
-                <li>⏱️ 4h26'</li>
-                <li>🥈 13° categoría 40–44</li>
-                <li>🏁 49° general / 900 atletas</li>
-                <li class="text-success font-medium">✅ Clasificación al Mundial</li>
-              </ul>
-            </div>
-          </article>
-          <article class="card bg-base-200 border border-base-300/50 shadow-lg">
-            <div class="card-body p-4 sm:p-5">
-              <h4 class="card-title text-lg">🥇 Triatlón Short Tandil</h4>
-              <ul class="text-sm space-y-1 opacity-90">
-                <li>🥇 1° categoría 40–44</li>
-                <li>🏁 6° general</li>
-              </ul>
-            </div>
-          </article>
-          <article class="card bg-base-200 border border-base-300/50 shadow-lg md:col-span-2">
-            <div class="card-body p-4 sm:p-5">
-              <h4 class="card-title text-lg">🥇 Triatlón La Brava (Short)</h4>
-              <ul class="text-sm space-y-1 opacity-90">
-                <li>🥇 1° categoría 40–44</li>
-                <li>🏁 3° general</li>
-              </ul>
-            </div>
-          </article>
-        </div>
-      </div>
-
-      <!-- 2025 -->
-      <div>
-        <h3 class="mb-3 flex items-center gap-2 text-lg font-bold text-secondary sm:mb-4 sm:text-xl">
-          <span aria-hidden="true">⚡</span> 2025
-        </h3>
-        <div class="grid md:grid-cols-2 gap-4">
-          <article class="card bg-base-200 border border-base-300/50 shadow-lg md:col-span-2">
-            <div class="card-body p-4 sm:p-5">
-              <h4 class="card-title text-lg">🏁 Ironman Brasil (Full)</h4>
-              <ul class="text-sm space-y-1 opacity-90">
-                <li>⏱️ 10h05</li>
-                <li>🚀 Debut en distancia completa</li>
-              </ul>
-            </div>
-          </article>
-          <article class="card bg-base-200 border border-base-300/50 shadow-lg">
-            <div class="card-body p-4 sm:p-5">
-              <h4 class="card-title text-base">🥉 Duatlón Punta Mogotes</h4>
-              <ul class="text-sm space-y-1 opacity-90">
-                <li>🥉 3° general</li>
-                <li>🥇 1° categoría</li>
-              </ul>
-            </div>
-          </article>
-          <article class="card bg-base-200 border border-base-300/50 shadow-lg">
-            <div class="card-body p-4 sm:p-5">
-              <h4 class="card-title text-base">🥇 Triatlón La Brava</h4>
-              <ul class="text-sm space-y-1 opacity-90">
-                <li>🥇 1° categoría</li>
-                <li>🏁 4° general</li>
-              </ul>
-            </div>
-          </article>
-          <article class="card bg-base-200 border border-base-300/50 shadow-lg">
-            <div class="card-body p-4 sm:p-5">
-              <h4 class="card-title text-base">🥈 Triatlón Short Tandil</h4>
-              <ul class="text-sm space-y-1 opacity-90">
-                <li>🥈 2° categoría</li>
-                <li>🏁 10° general</li>
-              </ul>
-            </div>
-          </article>
-          <article class="card bg-base-200 border border-base-300/50 shadow-lg">
-            <div class="card-body p-4 sm:p-5">
-              <h4 class="card-title text-base">🥉 Hombre de Piedra (Tandil)</h4>
-              <ul class="text-sm space-y-1 opacity-90">
-                <li>🥉 3° categoría</li>
-                <li>🏁 13° general</li>
-              </ul>
-            </div>
-          </article>
-          <article class="card bg-base-200 border border-base-300/50 shadow-lg">
-            <div class="card-body p-4 sm:p-5">
-              <h4 class="card-title text-base">🏃 TRI Sprint ISS</h4>
-              <ul class="text-sm space-y-1 opacity-90">
-                <li>🏁 4° categoría</li>
-                <li>🚀 22° general</li>
-                <li>🔥 Mejor tiempo en running</li>
-              </ul>
-            </div>
-          </article>
-          <article class="card bg-base-200 border border-base-300/50 shadow-lg md:col-span-2">
-            <div class="card-body p-4 sm:p-5">
-              <h4 class="card-title text-lg">🏃 Open Sports 10K</h4>
-              <ul class="text-sm space-y-1 opacity-90">
-                <li>⏱️ 37:28</li>
-                <li>🏁 55° / 1594 atletas</li>
-                <li>🥈 9° categoría</li>
-              </ul>
-            </div>
-          </article>
-        </div>
-      </div>
-
-      <!-- 2024 -->
-      <div>
-        <h3 class="mb-3 flex items-center gap-2 text-lg font-bold text-accent sm:mb-4 sm:text-xl">
-          <span aria-hidden="true">🧩</span> 2024
-        </h3>
-        <div class="grid md:grid-cols-2 gap-4">
-          <article class="card bg-base-200 border border-base-300/50 shadow-lg">
-            <div class="card-body p-4 sm:p-5">
-              <h4 class="card-title text-lg">🚴 Ironman 70.3 Buenos Aires</h4>
-              <ul class="text-sm space-y-1 opacity-90">
-                <li>📊 Top 10% masculino</li>
-                <li>🚀 Debut en 70.3</li>
-              </ul>
-            </div>
-          </article>
-          <article class="card bg-base-200 border border-base-300/50 shadow-lg">
-            <div class="card-body p-4 sm:p-5">
-              <h4 class="card-title text-lg">🏊 Triatlón La Brava</h4>
-              <p class="text-sm opacity-90">🚀 Debut en triatlón</p>
-            </div>
-          </article>
-          <article class="card bg-base-200 border border-base-300/50 shadow-lg md:col-span-2">
-            <div class="card-body p-4 sm:p-5">
-              <h4 class="card-title text-lg">🏃 Hombre de Piedra (Tandil)</h4>
-              <p class="text-sm opacity-90">🏁 17° categoría</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
+    <ResultsTimeline blocks={RESULTS_TIMELINE} />
   </section>
 
   <!-- Proyección -->
@@ -323,7 +169,7 @@ import {
   </section>
 
   <!-- Contacto -->
-  <section id="contacto" class="scroll-mt-24 mb-6 sm:mb-8">
+  <section id="contacto" class="scroll-mt-24 mb-12 sm:mb-14">
     <h2 class="mb-5 flex flex-wrap items-center gap-2 text-xl font-bold sm:mb-6 sm:text-2xl md:text-3xl">
       <span aria-hidden="true">📲</span> Contacto
     </h2>
@@ -360,6 +206,19 @@ import {
         >
         {CONTACT_EMAIL}
       </a>
+    </div>
+  </section>
+
+  <!-- Galería (al final) -->
+  <section id="galeria" class="scroll-mt-24 mb-6 sm:mb-8">
+    <h2 class="mb-3 flex flex-wrap items-center gap-2 text-xl font-bold sm:mb-4 sm:text-2xl md:text-3xl">
+      <span aria-hidden="true">📷</span> Galería
+    </h2>
+    <p class="mb-4 max-w-2xl text-sm text-base-content/80 sm:mb-6 sm:text-base">
+      Entrenamiento, competencias y el camino al Mundial.
+    </p>
+    <div class="-mx-4 min-w-0 sm:mx-0">
+      <ImageCarousel images={CAROUSEL_IMAGES} carouselId="cv" />
     </div>
   </section>
 </BaseLayout>

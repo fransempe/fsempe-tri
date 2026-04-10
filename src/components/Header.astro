@@ -1,5 +1,5 @@
 ---
-const { title = "Francisco Sempé" } = Astro.props;
+const { title = "" } = Astro.props;
 ---
 
 <header
@@ -35,7 +35,6 @@ const { title = "Francisco Sempé" } = Astro.props;
         <span class="max-w-[65vw] truncate text-center text-base font-semibold tracking-tight sm:max-w-none sm:text-lg">
           {title}
         </span>
-        <span class="text-lg leading-none opacity-90 sm:text-xl" aria-hidden="true">🏊</span>
       </a>
     </div>
 
