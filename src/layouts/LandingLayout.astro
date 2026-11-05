@@ -1,0 +1,83 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+
+const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
+
+const LINKS = [
+  ["Niza", "niza"],
+  ["Perfil", "perfil"],
+  ["Logros", "logros"],
+  ["Resultados", "resultados"],
+  ["Próximas carreras", "proximas-carreras"],
+  ["Galería", "galeria"],
+  ["Sponsorship", "sponsorship"],
+  ["Contacto", "contacto"],
+];
+---
+
+<!doctype html>
+<html lang="es" data-theme="night" class="landing">
+  <head>
+    <BaseHead title={title} description={description} image="/optimized/og-niza.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&display=swap"
+    />
+  </head>
+  <body class="min-h-screen overflow-x-clip bg-asfalto text-dorsal antialiased">
+    <header class="sticky top-0 z-50 bg-asfalto">
+      <nav class="flex h-14 items-center justify-between px-4 sm:px-8 lg:px-12" aria-label="Principal">
+        <a href="/#inicio" class="display text-2xl text-white">Francisco Sempé</a>
+
+        <ul class="m-0 hidden list-none gap-6 p-0 text-sm font-semibold lg:flex">
+          {
+            LINKS.map(([label, id]) => (
+              <li>
+                <a class="underline-offset-8 decoration-sol decoration-2 hover:underline" href={`/#${id}`}>
+                  {label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+
+        <details class="group lg:hidden" data-mobile-menu>
+          <summary class="flex h-11 cursor-pointer list-none items-center px-2 font-semibold [&::-webkit-details-marker]:hidden">
+            <span class="group-open:hidden">Menú</span>
+            <span class="hidden group-open:inline">Cerrar</span>
+          </summary>
+          <ul class="absolute inset-x-0 top-14 m-0 list-none border-t border-white/15 bg-asfalto p-0 pb-3">
+            {
+              LINKS.map(([label, id]) => (
+                <li>
+                  <a class="display block px-4 py-2.5 text-3xl text-white hover:text-sol sm:px-8" href={`/#${id}`}>
+                    {label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </details>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="flex flex-col gap-1 bg-asfalto px-4 py-6 text-sm text-dorsal/75 sm:flex-row sm:justify-between sm:px-8 lg:px-12">
+      <p>&copy; {new Date().getFullYear()} Francisco Sempé</p>
+      <p>Triatleta amateur · Mar del Plata, Argentina</p>
+    </footer>
+
+    <script>
+      const menu = document.querySelector<HTMLDetailsElement>("[data-mobile-menu]");
+      menu?.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => menu.removeAttribute("open"));
+      });
+    </script>
+  </body>
+</html>

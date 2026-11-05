@@ -1,4 +1,5 @@
 ---
+import IronmanLogo from "./IronmanLogo.astro";
 import type { TimelineYear } from "../data/results-timeline";
 
 interface Props {
@@ -8,77 +9,44 @@ interface Props {
 const { blocks } = Astro.props;
 
 const sorted = [...blocks].sort((a, b) => parseInt(a.year, 10) - parseInt(b.year, 10));
-
-const AXIS = "left-[15px] sm:left-4";
-
-const cardClass =
-  "rounded-xl border-2 border-solid border-base-content/40 bg-base-200/45 px-4 py-3 shadow-md shadow-base-300/15 sm:px-5 sm:py-4";
-const cardFeatured = "bg-base-200/60 ring-2 ring-base-content/20";
 ---
 
-<div class="results-timeline relative ms-0.5">
-  <div
-    class:list={[
-      "pointer-events-none absolute top-2 bottom-2 w-px -translate-x-1/2 bg-base-300/60",
-      AXIS,
-    ]}
-    aria-hidden="true"
-  >
-  </div>
+<div class="space-y-14 md:space-y-20">
+  {
+    sorted.map((block) => (
+      <section class="md:grid md:grid-cols-[minmax(0,2fr)_minmax(0,10fr)] md:gap-x-8" aria-label={`Resultados ${block.year}`}>
+        <h3 class="display tiempo mb-4 self-start text-6xl not-italic text-azur md:sticky md:top-20 md:mb-0 lg:text-8xl">
+          {block.year}
+        </h3>
 
-  <ul class="m-0 list-none space-y-0 p-0">
-    {
-      sorted.map((block, blockIndex) => (
-        <li class:list={["relative", blockIndex < sorted.length - 1 ? "mb-8 sm:mb-10" : ""]}>
-          <span
-            class:list={[
-              "absolute top-2 z-[2] flex h-3.5 w-3.5 -translate-x-1/2 items-center justify-center rounded-full bg-base-content ring-[3px] ring-base-100 sm:top-2.5 sm:h-4 sm:w-4 sm:ring-4",
-              AXIS,
-            ]}
-            aria-hidden="true"
-          >
-            <span class="h-1.5 w-1.5 rounded-full bg-base-100 sm:h-2 sm:w-2" />
-          </span>
-
-          <div class="border-base-300/25 pb-2 ps-9 sm:ps-11 md:grid md:grid-cols-[minmax(0,6.5rem)_1fr] md:gap-x-8 lg:grid-cols-[minmax(0,7.5rem)_1fr]">
-            <div class="mb-3 md:mb-0 md:border-e md:border-base-300/30 md:pe-6 md:pt-0.5">
-              <div class="flex flex-wrap items-center justify-end gap-2 md:block md:text-end">
-                <p class="font-mono text-2xl font-black tabular-nums text-base-content sm:text-3xl">{block.year}</p>
-                <span class="text-lg opacity-90 md:text-xl" aria-hidden="true">
-                  {block.emoji}
-                </span>
+        <ol class="m-0 list-none p-0">
+          {block.events.map((ev) => (
+            <li
+              class:list={[
+                "grid gap-x-6 gap-y-3 py-5 sm:grid-cols-[minmax(0,1fr)_minmax(0,14rem)]",
+                ev.featured
+                  ? "-mx-4 bg-azur px-4 text-white sm:-mx-5 sm:px-5"
+                  : "border-b border-asfalto/25 first:border-t-4 first:border-t-asfalto",
+              ]}
+            >
+              <div class="min-w-0">
+                <h4 class="text-balance text-xl font-bold leading-tight lg:text-2xl">{ev.title}<IronmanLogo race={ev.title} white={ev.featured} /></h4>
+                {ev.distance && (
+                  <p class:list={["mt-1 text-sm", ev.featured ? "text-white/85" : "text-asfalto/70"]}>{ev.distance}</p>
+                )}
               </div>
-            </div>
-
-            <div class="min-w-0 space-y-3 md:pt-0">
-              <ol class="m-0 list-none space-y-3 p-0">
-                {block.events.map((ev) => (
-                  <li>
-                    <article class:list={[cardClass, ev.featured ? cardFeatured : ""]}>
-                      <div class="flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:items-baseline sm:justify-between sm:gap-x-3">
-                        <h4 class="text-balance text-base font-semibold leading-snug text-base-content sm:text-lg">{ev.title}</h4>
-                        {ev.distance && (
-                          <p class="shrink-0 text-[0.7rem] font-medium uppercase tracking-wide text-base-content/55 sm:text-xs">
-                            📏 <span class="normal-case tracking-normal text-base-content/75">{ev.distance}</span>
-                          </p>
-                        )}
-                      </div>
-                      <ul class="mt-2.5 space-y-1.5 border-t border-base-300/35 pt-2.5 text-sm leading-snug text-base-content/88 sm:text-sm">
-                        {ev.lines.map((line) => (
-                          <li class="flex gap-2">
-                            <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-base-content/30" aria-hidden="true" />
-                            <span class="min-w-0">{line}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </article>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </div>
-        </li>
-      ))
-    }
-  </ul>
+              <div class="min-w-0 sm:text-right">
+                {ev.time && <p class:list={["tiempo mb-1 text-4xl lg:text-5xl", ev.featured ? "text-sol" : "text-azur"]}>{ev.time}</p>}
+                <ul class="m-0 list-none space-y-0.5 p-0 text-sm font-medium lg:text-base">
+                  {ev.lines.map((line) => (
+                    <li>{line}</li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+    ))
+  }
 </div>

@@ -1,12 +1,11 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import LandingLayout from "../layouts/LandingLayout.astro";
 ---
 
-<BaseLayout title = "404: Not Found" includeSidebar={false}>
-  <div class="text-center">
-    <h1 class="text-9xl font-bold mb-4">🏝</h1>
-    <h1 class="text-9xl font-bold mb-2">404</h1>
-    <h3 class="text-2xl">The page you're looking for couldn't be found.</h3>
-    <a class="btn btn-accent mt-9" href="/">Home</a>
-  </div>
-</BaseLayout>
+<LandingLayout title="404: página no encontrada">
+  <section class="flex min-h-[70svh] flex-col items-start justify-center gap-6 bg-azur px-4 py-16 text-white sm:px-8 lg:px-12">
+    <h1 class="display text-[clamp(5rem,20vw,14rem)]">404</h1>
+    <p class="text-xl">Esta página quedó fuera del recorrido.</p>
+    <a class="bg-sol px-6 py-3 font-bold text-asfalto transition-colors hover:bg-white" href="/">Volver al inicio</a>
+  </section>
+</LandingLayout>

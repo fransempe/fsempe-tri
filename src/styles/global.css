@@ -2,6 +2,54 @@ html {
     scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Landing: tablero de meta de Niza */
+.landing {
+    font-family: Archivo, "Arial Narrow", sans-serif;
+    scrollbar-color: #ffc61a #12151a;
+}
+
+.landing ::selection {
+    background: #ffc61a;
+    color: #12151a;
+}
+
+.landing :focus-visible {
+    outline: 3px solid #ffc61a;
+    outline-offset: 3px;
+}
+
+.landing .on-sol :focus-visible,
+.landing .on-dorsal :focus-visible {
+    outline-color: #0b3fc4;
+}
+
+.display {
+    font-stretch: 62%;
+    font-style: italic;
+    font-weight: 800;
+    line-height: 0.9;
+    text-transform: uppercase;
+    text-wrap: balance;
+}
+
+.tiempo {
+    font-stretch: 62%;
+    font-variant-numeric: tabular-nums;
+    font-weight: 800;
+    line-height: 0.9;
+}
+
+.filmstrip {
+    scrollbar-color: #ffc61a transparent;
+    scrollbar-width: thin;
+}
+
 /* Carrusel / scroll horizontal en iOS */
 .touch-pan-x-momentum {
     -webkit-overflow-scrolling: touch;

@@ -1,0 +1,23 @@
+---
+interface Props {
+  /** Nombre de la carrera: el logo solo aparece si es una carrera Ironman */
+  race: string;
+  /** Versión blanca, para fondos donde el rojo no se lee */
+  white?: boolean;
+}
+
+const { race, white = false } = Astro.props;
+---
+
+{
+  /ironman/i.test(race) && (
+    <img
+      src={white ? "/optimized/ironman-logo-white.png" : "/optimized/ironman-logo.png"}
+      alt=""
+      width="79"
+      height="96"
+      loading="lazy"
+      class="ml-2 inline-block h-[0.75em] max-h-9 min-h-6 w-auto align-[-0.05em] not-italic"
+    />
+  )
+}
