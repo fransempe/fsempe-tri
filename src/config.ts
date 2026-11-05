@@ -4,7 +4,7 @@
 export const HEADER_BRAND = '';
 export const SITE_TITLE = 'Francisco Sempé | Triatleta Amateur';
 export const SITE_DESCRIPTION =
-  'Triatleta amateur de Mar del Plata, categoría 40–44. Participó del IRONMAN 70.3 World Championship en Niza 2026 con un tiempo de 5:15:32.';
+  'Triatleta amateur de Mar del Plata, categoría 40–44. Participó del IRONMAN 70.3 World Championship en Niza 2026.';
 export const GENERATE_SLUG_FROM_TITLE = true;
 export const TRANSITION_API = true;
 
@@ -32,7 +32,7 @@ export const PHOTOS = {
     width: 3200,
     height: 2133,
     widths: [800, 1600, 2400],
-    alt: 'Francisco Sempé con los brazos en alto en la meta del Mundial IRONMAN 70.3 de Niza; el tablero marca 05:15:32',
+    alt: 'Francisco Sempé con los brazos en alto en la meta del Mundial IRONMAN 70.3 de Niza',
   },
   bikeNice: {
     name: 'bike-nice',
